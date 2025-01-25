@@ -9,6 +9,7 @@ public class Movement : MonoBehaviour
     // Drag and Launch
     private Vector3 launchStart;
     private Vector2 dragStart;
+    private Vector2 mousePos = Vector2.zero;
     private bool isDragging = false;
 
     public float maxDragDist = 3f;
@@ -68,21 +69,21 @@ public class Movement : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) // Left mouse button pressed
         {
             // Check if the mouse is over the object
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
-            Debug.Log($"DRAG START: {mousePosition}, {hit.collider}, {gameObject}");
+            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+            Debug.Log($"DRAG START: {mousePos}, {hit.collider}, {gameObject}");
 
             if (hit.collider != null && hit.collider.gameObject == gameObject)
             {
                 isDragging = true;
                 // rb.isKinematic = true; // Disable physics while dragging
-                dragStart = mousePosition;
+                dragStart = mousePos;
             }
         }
 
         if (isDragging)
         {
-
+            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
 
         if (Input.GetMouseButtonUp(0)) // Left mouse button released
@@ -91,14 +92,13 @@ public class Movement : MonoBehaviour
 
             isDragging = false;
 
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 dragDirection = dragStart - mousePosition;
+            Vector2 dragDirection = dragStart - mousePos;
             dragDirection = Vector2.ClampMagnitude(dragDirection, maxDragDist);
-            Debug.Log($"DRAG END: {mousePosition}");
+            Debug.Log($"DRAG END: {mousePos}");
 
-            var f = dragDirection * launchForceMult;
+            var f = dragDirection;
             var mod = (float)Math.Log(f.sqrMagnitude) / 2;
-            rb.AddForce(f * mod, ForceMode2D.Impulse);
+            rb.AddForce(f.normalized * mod * launchForceMult, ForceMode2D.Impulse);
             rb.gravityScale = 1;
         }
     }
@@ -115,7 +115,7 @@ public class Movement : MonoBehaviour
         if (isDragging)
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawLine(dragStart, transform.position);
+            Gizmos.DrawLine(dragStart, mousePos);
         }
     }
 }
