@@ -56,7 +56,7 @@ public class Movement : MonoBehaviour
             }
             else
             {
-                rb.linearVelocityX *= 0.9f;
+                rb.linearVelocityX *= 0.8f;
             }
         }
 
