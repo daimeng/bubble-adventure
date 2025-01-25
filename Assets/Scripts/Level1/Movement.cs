@@ -132,7 +132,7 @@ public class Movement : MonoBehaviour
             var mod = (float)Math.Log(f.sqrMagnitude) / 2;
             launching = true;
             isGrounded = false;
-            rb.AddForce(f.normalized * mod * launchForceMult, ForceMode2D.Impulse);
+            rb.AddForce(mod * launchForceMult * f.normalized, ForceMode2D.Impulse);
         }
     }
 
