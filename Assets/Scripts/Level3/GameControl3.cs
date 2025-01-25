@@ -4,7 +4,7 @@ public class GameControl3 : MonoBehaviour
 {
     [SerializeField] GameObject bubble;
     [SerializeField] GameObject cloud;
-    public static float speed = 1f;
+    public static float speed = 3f;
     public static bool gameover = false;
     public static bool win = false;
     public static int score = 0;
@@ -13,10 +13,10 @@ public class GameControl3 : MonoBehaviour
     {
         for (int i = -11; i < 12; i++)
         {
-            for (int j = -5; j < 3; j++)
+            for (int j = -5; j < 0; j++)
             {
-                Instantiate(bubble, new Vector3(i, j, 0), Quaternion.identity);
-                Instantiate(cloud, new Vector3(i, j, 0), Quaternion.identity);
+                GameObject a = Instantiate(bubble, new Vector3(i, j, 0), Quaternion.identity);
+                GameObject b = Instantiate(cloud, new Vector3(i, j, 0), Quaternion.identity);
             }
         }
     }

@@ -4,7 +4,6 @@ public class Player3 : MonoBehaviour
 {
     [SerializeField] GameObject playerCloud;
     bool f = true;
-    float j = 0;
     void Start()
     {
     }
@@ -23,12 +22,6 @@ public class Player3 : MonoBehaviour
         else if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && !GameControl3.gameover && !GameControl3.win)
         {
             f = true;
-        }
-        j += Time.deltaTime * GameControl3.speed;
-        if (j >= 1)
-        {
-            f = true;
-            j = 0;
         }
     }
 }

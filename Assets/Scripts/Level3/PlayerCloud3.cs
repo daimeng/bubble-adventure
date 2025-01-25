@@ -17,7 +17,7 @@ public class PlayerCloud3 : MonoBehaviour
         }
         else
         {
-            gameObject.GetComponent<CircleCollider2D>().radius = 1.5f;
+            gameObject.GetComponent<CircleCollider2D>().radius = 2f;
         }
     }
     public void OnTriggerEnter2D(Collider2D obj)

@@ -26,6 +26,10 @@ public class Bubble3 : MonoBehaviour
             {
                 Destroy(gameObject);
             }
+            else if (transform.position.y > 2)
+            {
+                kind = -1;
+            }
         }
     }
     public void OnTriggerEnter2D(Collider2D obj)
@@ -35,6 +39,7 @@ public class Bubble3 : MonoBehaviour
             if (kind == 0)
             {
                 GameControl3.speed += 0.5f;
+                Debug.Log("Speed: " + GameControl3.speed.ToString());
             }
             else if (kind == 1)
             {
