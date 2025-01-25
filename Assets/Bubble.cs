@@ -8,6 +8,7 @@ public class Bubble : MonoBehaviour
         if (m != null)
         {
             m.bubble = this;
+            m.controlled = false;
             c.attachedRigidbody.gravityScale = 0;
             c.attachedRigidbody.linearVelocity = Vector2.zero;
         }

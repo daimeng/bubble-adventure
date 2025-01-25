@@ -5,6 +5,15 @@ using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
+
+    // Drag and Launch
+    private Vector3 launchStart;
+    private Vector3 dragStart;
+    private bool isDragging = false;
+
+    public float maxDragDist = 3f;
+    public float launchForceMult = 10f;
+
     public float moveSpeed = 5f; // Speed of horizontal movement
     public float jumpForce = 10f; // Force applied when jumping
     public LayerMask groundLayer; // LayerMask to detect ground
@@ -12,6 +21,8 @@ public class Movement : MonoBehaviour
     public float groundCheckRadius = 0.5f; // Radius for ground check
 
     public Bubble bubble = null;
+
+    public bool controlled = true;
 
     private Rigidbody2D rb;
     private bool isGrounded;
@@ -32,24 +43,27 @@ public class Movement : MonoBehaviour
     //     }
     // }
 
+    void FixedUpdate()
+    {
+        if (bubble == null) return;
+
+        var d = (bubble.transform.position - transform.position) / 2;
+        var nextpos = transform.position + d;
+        if (d.sqrMagnitude < 0.1)
+        {
+            rb.MovePosition(bubble.transform.position);
+            bubble = null;
+            controlled = true;
+        }
+        else
+        {
+            rb.MovePosition(nextpos);
+        }
+    }
+
     void Update()
     {
-        if (bubble != null)
-        {
-            var d = (bubble.transform.position - transform.position) / 2;
-            var nextpos = transform.position + d;
-            if (d.sqrMagnitude < 0.1)
-            {
-                rb.MovePosition(bubble.transform.position);
-                bubble = null;
-            }
-            else
-            {
-                rb.MovePosition(nextpos);
-            }
-
-            return;
-        }
+        if (!controlled) return;
 
         isGrounded = Physics2D.OverlapCircle(transform.position, groundCheckRadius, groundLayer);
 
