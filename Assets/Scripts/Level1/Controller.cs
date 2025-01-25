@@ -24,6 +24,5 @@ public class Controller : MonoBehaviour
         }
 
         cursor += 0.1f;
-
     }
 }

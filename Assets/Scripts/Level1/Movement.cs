@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
+    private LayerMask defaultLayer;
 
     // Drag and Launch
     private Vector3 launchStart;
@@ -30,6 +31,7 @@ public class Movement : MonoBehaviour
 
     void Start()
     {
+        defaultLayer = LayerMask.GetMask("Default");
         drawline = DrawLine.GetComponent<SpriteRenderer>();
         drawline.enabled = false;
         rb = GetComponent<Rigidbody2D>();
@@ -85,7 +87,7 @@ public class Movement : MonoBehaviour
         {
             // Check if the mouse is over the object
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, 1, defaultLayer);
             Debug.Log($"DRAG START: {mousePos}, {hit.collider}, {gameObject}");
 
             if (hit.collider != null && hit.collider.gameObject == gameObject)
