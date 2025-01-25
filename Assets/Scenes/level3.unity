@@ -287,6 +287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bubble: {fileID: 5441289116784289093, guid: 659c5d9fe60cb0d48b5ce06f4c245734, type: 3}
   cloud: {fileID: 4904435063316205276, guid: fdb54950faa815b4b9dadbab22d22bad, type: 3}
+  cloud3: {fileID: 0}
 --- !u!4 &924190201
 Transform:
   m_ObjectHideFlags: 0
@@ -398,7 +399,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 2
+  m_Radius: 3
 --- !u!114 &931738402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -730,7 +731,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41c796eb31fafd24aa76179794ee9217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCloud: {fileID: 931738398}
 --- !u!50 &1696137530
 Rigidbody2D:
   serializedVersion: 5
