@@ -19,7 +19,7 @@ public class Controller : MonoBehaviour
         var rng = Random.Range(0, 100);
         if (rng < 10)
         {
-            Instantiate(bubblePrefab, new Vector3(cursor, rng, 0), Quaternion.identity);
+            var b = Instantiate(bubblePrefab, new Vector3(cursor, rng, 0), Quaternion.identity);
             cursor += 2;
         }
 

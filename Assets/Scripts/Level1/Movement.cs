@@ -21,6 +21,8 @@ public class Movement : MonoBehaviour
     public float maxDragDist = 3f;
     public float launchForceMult = 0.1f;
 
+    public bool launching = false;
+
     public LayerMask groundLayer; // LayerMask to detect ground
     public Transform groundCheck; // Empty GameObject to check if the player is grounded
     public float groundCheckRadius = 0.5f; // Radius for ground check
@@ -42,6 +44,7 @@ public class Movement : MonoBehaviour
         if (c.gameObject.layer == 6)
         {
             isGrounded = true;
+            launching = false;
         }
     }
 
@@ -60,22 +63,22 @@ public class Movement : MonoBehaviour
             }
         }
 
-        if (bubble == null) return;
+        // if (bubble == null) return;
 
-        // If in bubble, suck to center
-        var d = (bubble.transform.position - transform.position) / 2;
-        var clamped = Math.Min(d.magnitude, 0.1f);
-        var nextpos = transform.position + d.normalized * clamped;
-        if (d.sqrMagnitude < 0.1)
-        {
-            rb.MovePosition(bubble.transform.position);
-            bubble = null;
-            controlled = true;
-        }
-        else
-        {
-            rb.MovePosition(nextpos);
-        }
+        // // If in bubble, suck to center
+        // var d = (bubble.transform.position - transform.position) / 2;
+        // var clamped = Math.Min(d.magnitude, 0.1f);
+        // var nextpos = transform.position + d.normalized * clamped;
+        // if (d.sqrMagnitude < 0.1)
+        // {
+        //     rb.MovePosition(bubble.transform.position);
+        //     bubble = null;
+        //     controlled = true;
+        // }
+        // else
+        // {
+        //     rb.MovePosition(nextpos);
+        // }
     }
 
     void Update()
@@ -127,9 +130,9 @@ public class Movement : MonoBehaviour
 
             var f = dragDirection;
             var mod = (float)Math.Log(f.sqrMagnitude) / 2;
-            rb.AddForce(f.normalized * mod * launchForceMult, ForceMode2D.Impulse);
-            rb.gravityScale = 0.5f;
+            launching = true;
             isGrounded = false;
+            rb.AddForce(f.normalized * mod * launchForceMult, ForceMode2D.Impulse);
         }
     }
 
