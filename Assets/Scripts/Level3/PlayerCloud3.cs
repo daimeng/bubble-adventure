@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerCloud : MonoBehaviour
+public class PlayerCloud3 : MonoBehaviour
 {
     [SerializeField] GameObject player;
     void Start()
@@ -9,11 +9,11 @@ public class PlayerCloud : MonoBehaviour
     void Update()
     {
         transform.position = player.transform.position;
-        if (Input.GetKey(KeyCode.S) && GameControl.speed <= 10 && !GameControl.gameover && !GameControl.win)
+        if (Input.GetKey(KeyCode.S) && GameControl3.speed <= 10 && !GameControl3.gameover && !GameControl3.win)
         {
             gameObject.GetComponent<CircleCollider2D>().radius = 3;
-            GameControl.speed += 1f * Time.deltaTime;
-            Debug.Log("Enter, " + GameControl.speed.ToString());
+            GameControl3.speed += 1f * Time.deltaTime;
+            Debug.Log("Enter, " + GameControl3.speed.ToString());
         }
         else
         {

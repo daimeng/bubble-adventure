@@ -1,15 +1,15 @@
 using UnityEngine;
 
-public class Cloud : MonoBehaviour
+public class Cloud3 : MonoBehaviour
 {
     void Start()
     {
     }
     void Update()
     {
-        if (!GameControl.gameover)
+        if (!GameControl3.gameover)
         {
-            transform.position += new Vector3(0, GameControl.speed * Time.deltaTime, 0);
+            transform.position += new Vector3(0, GameControl3.speed * Time.deltaTime, 0);
             if (transform.position.y > 5)
             {
                 Destroy(gameObject);

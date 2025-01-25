@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Bubble : MonoBehaviour
+public class Bubble3 : MonoBehaviour
 {
     int kind = -1;
     void Start()
@@ -19,9 +19,9 @@ public class Bubble : MonoBehaviour
     }
     void Update()
     {
-        if (!GameControl.gameover)
+        if (!GameControl3.gameover)
         {
-            transform.position += new Vector3(0, GameControl.speed * Time.deltaTime, 0);
+            transform.position += new Vector3(0, GameControl3.speed * Time.deltaTime, 0);
             if (transform.position.y > 5)
             {
                 Destroy(gameObject);
@@ -34,12 +34,12 @@ public class Bubble : MonoBehaviour
         {
             if (kind == 0)
             {
-                GameControl.speed += 0.5f;
+                GameControl3.speed += 0.5f;
             }
             else if (kind == 1)
             {
-                GameControl.gameover = true;
-                Debug.Log($"Game Over, score: {GameControl.score}");
+                GameControl3.gameover = true;
+                Debug.Log($"Game Over, score: {GameControl3.score}");
             }
             // do something
             Destroy(gameObject);

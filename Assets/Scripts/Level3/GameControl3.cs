@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GameControl : MonoBehaviour
+public class GameControl3 : MonoBehaviour
 {
     [SerializeField] GameObject bubble;
     [SerializeField] GameObject cloud;
