@@ -18,10 +18,8 @@ public class Movement : MonoBehaviour
     public bool controlled = true;
 
     public float maxDragDist = 3f;
-    public float launchForceMult = 10f;
+    public float launchForceMult = 0.1f;
 
-    public float moveSpeed = 5f; // Speed of horizontal movement
-    public float jumpForce = 10f; // Force applied when jumping
     public LayerMask groundLayer; // LayerMask to detect ground
     public Transform groundCheck; // Empty GameObject to check if the player is grounded
     public float groundCheckRadius = 0.5f; // Radius for ground check
@@ -128,7 +126,7 @@ public class Movement : MonoBehaviour
             var f = dragDirection;
             var mod = (float)Math.Log(f.sqrMagnitude) / 2;
             rb.AddForce(f.normalized * mod * launchForceMult, ForceMode2D.Impulse);
-            rb.gravityScale = 1;
+            rb.gravityScale = 0.5f;
             isGrounded = false;
         }
     }
