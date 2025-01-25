@@ -41,7 +41,6 @@ public class Bubble3 : MonoBehaviour
                 GameControl3.gameover = true;
                 Debug.Log($"Game Over, score: {GameControl3.score}");
             }
-            // do something
             Destroy(gameObject);
         }
     }

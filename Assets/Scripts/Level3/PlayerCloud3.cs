@@ -13,7 +13,7 @@ public class PlayerCloud3 : MonoBehaviour
         {
             gameObject.GetComponent<CircleCollider2D>().radius = 3;
             GameControl3.speed += 1f * Time.deltaTime;
-            Debug.Log("Enter, " + GameControl3.speed.ToString());
+            Debug.Log("Speed: " + GameControl3.speed.ToString());
         }
         else
         {
