@@ -419,12 +419,12 @@ MonoBehaviour:
   Text: {fileID: 1526385177}
   typingSpeed: 0.07
   dialogues:
-  - A mermaid awoke inside her bubble
-  - Lonely isle above the rubble
-  - Outside world disturbs her abode
-  - If true then she must hit the road
-  - She must escape, and find another
-  - Another Haven, she must discover
+  - "The bubbles\u2026 It cannot be"
+  - They pop from scratch, from small debris
+  - A home I sought, yet had not thought
+  - Of fleeting places left to rot
+  - Still, I chase that endless gleam
+  - '''Tis the curse of those not free.'
   BlackFade: {fileID: 286551336}
 --- !u!4 &392579171
 Transform:
@@ -476,7 +476,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 600, y: 100}
+  m_SizeDelta: {x: 700, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1526385177
 MonoBehaviour:

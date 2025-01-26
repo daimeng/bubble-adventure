@@ -4,11 +4,15 @@ using UnityEngine.UI;
 using TMPro;
 
 public class dialogue_print : MonoBehaviour {
-    public TextMeshProUGUI Text; //the text itself
+
+    public TextMeshProUGUI Text; //this is TMP
     public float typingSpeed = 0.05f;
     public string[] dialogues;
     private int currentDialogueIndex = 0;
     private bool isPrinting = false;
+
+    public Animator BlackFade;
+    //public string next scene
 
     private void Start() {
         StartDialogue();
@@ -45,6 +49,20 @@ public class dialogue_print : MonoBehaviour {
             currentDialogueIndex++;
             StartCoroutine(PrintDialogue());
         }
+        else if (!isPrinting && currentDialogueIndex == dialogues.Length - 1)
+        {
+            // Trigger fade animation and exit the scene
+            StartCoroutine(FadeAndExit());
+        }
+    }
+
+    private IEnumerator FadeAndExit()
+    {
+        // Trigger the fade animation
+        BlackFade.SetTrigger("FadeOut");
+
+        // Wait for the animation to finish (assuming 1 second fade duration)
+        yield return new WaitForSeconds(1f);
     }
 }
 
