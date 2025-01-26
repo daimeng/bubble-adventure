@@ -1,11 +1,12 @@
 using System;
+using Unity.VisualScripting;
 using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class Bubble : MonoBehaviour
 {
-    private float maxsize = 1;
+    private float maxsize = 2.5f;
     private CircleCollider2D collider;
 
     private float phasex = 0.5f;
@@ -85,6 +86,14 @@ public class Bubble : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (transform.localScale.x > maxsize)
+        {
+            if (UnityEngine.Random.value < 0.1)
+            {
+                Destroy(gameObject);
+            }
+        }
+
         var dvx = Math.Clamp(UnityEngine.Random.value - phasex, -0.1f, 0.1f);
         vx += dvx * 0.03f;
         phasex += dvx * 0.05f;
