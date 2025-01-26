@@ -8,7 +8,7 @@ namespace Utils
     {
         private void OnEnable()
         {
-            SceneManager.LoadScene("Level2");
+            SceneManager.LoadScene("Test");
         }
     }
 }
