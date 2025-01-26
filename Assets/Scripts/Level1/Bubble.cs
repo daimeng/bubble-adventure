@@ -1,10 +1,10 @@
 using System;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class Bubble : MonoBehaviour
 {
-    public float size = 0.1f;
     private float maxsize = 1;
     private CircleCollider2D collider;
 
@@ -14,6 +14,29 @@ public class Bubble : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D c)
     {
+        c.TryGetComponent(out Bubble b);
+        if (b != null)
+        {
+            if (transform.localScale.x > b.transform.localScale.x)
+            {
+                // merge smaller bubble into larger
+                transform.position = new Vector3(
+                    transform.position.x + (b.transform.position.x - transform.position.x) / 2,
+                    transform.position.y + (b.transform.position.y - transform.position.y) / 2,
+                    transform.position.z
+                );
+
+                transform.localScale = new Vector3(
+                    b.transform.localScale.x / 2 + transform.localScale.x,
+                    b.transform.localScale.y / 2 + transform.localScale.y,
+                    transform.localScale.z
+                );
+                Destroy(b.gameObject);
+            }
+        }
+
+        if (c.transform.localScale.x > transform.localScale.x) return;
+
         c.TryGetComponent(out Movement m);
         if (m != null)
         {
@@ -34,6 +57,7 @@ public class Bubble : MonoBehaviour
         {
             var rb = c.attachedRigidbody;
             var d = transform.position - rb.transform.position;
+            d.y -= collider.radius / 4;
             if (!m.launching)
             {
                 rb.AddForce(d, ForceMode2D.Impulse);
@@ -67,5 +91,7 @@ public class Bubble : MonoBehaviour
 
         var tx = transform.position.x + vx;
         transform.position = new Vector3(tx, transform.position.y + vy);
+
+        transform.localScale = new Vector3(transform.localScale.x + 0.001f, transform.localScale.y + 0.001f, transform.localScale.z);
     }
 }
