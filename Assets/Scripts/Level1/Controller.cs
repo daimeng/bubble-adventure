@@ -3,6 +3,7 @@ using UnityEngine;
 public class Controller : MonoBehaviour
 {
     public Transform guy;
+    public Transform platform;
     float cursor = 0;
 
     public GameObject bubblePrefab;
@@ -10,13 +11,15 @@ public class Controller : MonoBehaviour
     void Start()
     {
         var b = Instantiate(bubblePrefab, guy.transform.position, Quaternion.identity);
-        b.transform.localScale = new Vector3(1.5f, 1.5f, b.transform.localScale.z);
+        b.transform.localScale = new Vector3(1.2f, 1.2f, b.transform.localScale.z);
 
         for (var i = 0; i < 10; i++)
         {
-            var rng = Random.Range(-5, 20);
+            var rng = Random.Range(4, 20);
             Instantiate(bubblePrefab, new Vector3(guy.transform.position.x + rng, -2f - 2 * Random.value, 0), Quaternion.identity);
         }
+
+        platform.position += new Vector3(100, 0, 0);
     }
 
     // Update is called once per frame

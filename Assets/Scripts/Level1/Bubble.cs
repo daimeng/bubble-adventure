@@ -4,7 +4,6 @@ using UnityEngine;
 public class Bubble : MonoBehaviour
 {
     private float maxsize = 1.9f;
-    private CircleCollider2D collider;
 
     private float phasex = 0.5f;
     private float vx = 0.0f;
@@ -64,9 +63,10 @@ public class Bubble : MonoBehaviour
         c.TryGetComponent(out Movement m);
         if (m != null)
         {
+            m.bubble = this;
             var rb = c.attachedRigidbody;
             var d = transform.position - rb.transform.position;
-            d.y -= collider.radius / 10;
+            d.y -= 0.02f;
             if (!m.launching)
             {
                 rb.AddForce(d, ForceMode2D.Impulse);
@@ -88,7 +88,6 @@ public class Bubble : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        collider = GetComponent<CircleCollider2D>();
     }
 
     // Update is called once per frame

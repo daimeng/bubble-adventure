@@ -14,8 +14,6 @@ public class Movement : MonoBehaviour
     private LayerMask defaultLayer;
 
     // Drag and Launch
-    private Vector3 launchStart;
-    private Vector2 dragStart;
     private Vector2 mousePos = Vector2.zero;
     private bool isDragging = false;
 
@@ -24,13 +22,11 @@ public class Movement : MonoBehaviour
     public bool controlled = true;
 
     public float maxDragDist = 3f;
-    public float launchForceMult = 0.1f;
+    public float launchForceMult = 0.05f;
 
     public bool launching = false;
 
     public LayerMask groundLayer; // LayerMask to detect ground
-    public Transform groundCheck; // Empty GameObject to check if the player is grounded
-    public float groundCheckRadius = 0.5f; // Radius for ground check
     public Transform DrawLine;
     private SpriteRenderer drawline;
     private Rigidbody2D rb;
@@ -105,7 +101,6 @@ public class Movement : MonoBehaviour
             if (hit.collider != null && hit.collider.gameObject == gameObject)
             {
                 drawline.enabled = true;
-                dragStart = mousePos;
                 isDragging = true;
                 // rb.isKinematic = true; // Disable physics while dragging
             }
@@ -114,7 +109,7 @@ public class Movement : MonoBehaviour
         if (isDragging)
         {
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 dragDirection = dragStart - mousePos;
+            Vector2 dragDirection = new Vector2(transform.position.x - mousePos.x, transform.position.y - mousePos.y);
             dragDirection = Vector2.ClampMagnitude(dragDirection, maxDragDist);
             // Convert the direction to a Quaternion rotation
             float angle = Mathf.Atan2(dragDirection.y, dragDirection.x) * Mathf.Rad2Deg;
@@ -133,7 +128,7 @@ public class Movement : MonoBehaviour
             isDragging = false;
             drawline.enabled = false;
 
-            Vector2 dragDirection = dragStart - mousePos;
+            Vector2 dragDirection = new Vector2(transform.position.x - mousePos.x, transform.position.y - mousePos.y);
             dragDirection = Vector2.ClampMagnitude(dragDirection, maxDragDist);
             Debug.Log($"DRAG END: {mousePos}");
 
@@ -142,16 +137,6 @@ public class Movement : MonoBehaviour
             launching = true;
             isGrounded = false;
             rb.AddForce(mod * launchForceMult * f.normalized, ForceMode2D.Impulse);
-        }
-    }
-
-    // Optional: Draw the ground check radius in the editor for debugging
-    private void OnDrawGizmosSelected()
-    {
-        if (groundCheck != null)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, groundCheckRadius);
         }
     }
 }
