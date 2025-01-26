@@ -4,21 +4,17 @@ public class GameControl3 : MonoBehaviour
 {
     [SerializeField] GameObject bubble;
     [SerializeField] GameObject cloud;
-    [SerializeField] GameObject cloud3;
     public static float speed = 3f;
     public static bool gameover = false;
     public static bool win = false;
-    public static int score = 0;
+    public static int score = -8;
     float j = 0;
     void Start()
     {
-        for (int i = -11; i < 12; i++)
+        for (int i = -14; i < 15; i++)
         {
-            for (int j = -6; j < 0; j++)
-            {
-                GameObject a = Instantiate(bubble, new Vector3(i, j, 0), Quaternion.identity);
-                GameObject b = Instantiate(cloud, new Vector3(i, j, 0), Quaternion.identity);
-            }
+            GameObject a = Instantiate(bubble, new Vector3(i, -6, 0), Quaternion.identity);
+            GameObject b = Instantiate(cloud, new Vector3(i, -6, 15 - i), Quaternion.identity);
         }
     }
     void Update()
@@ -39,12 +35,11 @@ public class GameControl3 : MonoBehaviour
                 if (score >= 300)
                 {
                     win = true;
-                    cloud3.SetActive(false);
                 }
-                for (int i = -11; i < 12; i++)
+                for (int i = -14; i < 15; i++)
                 {
                     Instantiate(bubble, new Vector3(i, -6, 0), Quaternion.identity);
-                    Instantiate(cloud, new Vector3(i, -6, 0), Quaternion.identity);
+                    Instantiate(cloud, new Vector3(i, -6, 15 - i), Quaternion.identity);
                 }
                 j = 0;
             }

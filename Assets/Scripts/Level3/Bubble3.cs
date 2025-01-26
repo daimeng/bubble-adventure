@@ -1,25 +1,34 @@
+using System;
 using UnityEngine;
 
 public class Bubble3 : MonoBehaviour
 {
     int kind = -1;
-    bool f = true;
+    [SerializeField] GameObject bubble_0;
+    [SerializeField] GameObject bubble_1;
+    public static float speed = 4;
+    System.Random r = new System.Random();
+    float h = 1;
     void Start()
     {
-        int r = Random.Range(0, 99);
-        if (0 <= r && r < 5)
+        h = UnityEngine.Random.Range(1.5f, 4f);
+        bubble_0.SetActive(false);
+        bubble_1.SetActive(false);
+        GetComponent<Animator>().enabled = false;
+        int rint = r.Next(0, 100);
+        if (0 <= rint && rint < 5)
         {
             kind = 0;
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
+            bubble_0.SetActive(true);
         }
-        else if (5 <= r && r < 10)
+        else if (5 <= rint && rint < 10)
         {
             kind = 1;
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 1);
+            bubble_1.SetActive(true);
         }
         else
         {
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+            GetComponent<Animator>().enabled = true;
         }
     }
     void Update()
@@ -27,7 +36,7 @@ public class Bubble3 : MonoBehaviour
         if (!GameControl3.gameover)
         {
             transform.position += new Vector3(0, GameControl3.speed * Time.deltaTime, 0);
-            if (transform.position.y > 6)
+            if (transform.position.y > h)
             {
                 Destroy(gameObject);
             }
@@ -36,19 +45,21 @@ public class Bubble3 : MonoBehaviour
                 kind = -1;
             }
         }
-        if (Input.GetKey(KeyCode.A) && f && !GameControl3.gameover && !GameControl3.win)
+        if (Input.GetKey(KeyCode.A) && !GameControl3.gameover && !GameControl3.win)
         {
-            transform.position += new Vector3(1f, 0, 0);
-            f = false;
+            transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
         }
-        else if (Input.GetKey(KeyCode.D) && f && !GameControl3.gameover && !GameControl3.win)
+        else if (Input.GetKey(KeyCode.D) && !GameControl3.gameover && !GameControl3.win)
         {
-            transform.position += new Vector3(-1f, 0, 0);
-            f = false;
+            transform.position += new Vector3(-speed * Time.deltaTime, 0, 0);
         }
-        else if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && !GameControl3.gameover && !GameControl3.win)
+        if (transform.position.x < -14)
         {
-            f = true;
+            transform.position = new Vector3(14, transform.position.y, 0);
+        }
+        else if (transform.position.x > 14)
+        {
+            transform.position = new Vector3(-14, transform.position.y, 0);
         }
     }
     public void OnTriggerEnter2D(Collider2D obj)
