@@ -559,7 +559,25 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      mermaid_sprite_sheet_0: -4377382737225446389
+      mermaid_sprite_sheet_1: -4073705482765375476
+      mermaid_sprite_sheet_10: -8628660576996283941
+      mermaid_sprite_sheet_11: -920222621719519689
+      mermaid_sprite_sheet_12: 5806982782904015042
+      mermaid_sprite_sheet_13: 1382004196266111242
+      mermaid_sprite_sheet_14: -3736998606425374868
+      mermaid_sprite_sheet_15: -2309810057680765728
+      mermaid_sprite_sheet_16: 3246390234431419719
+      mermaid_sprite_sheet_17: -1455557314484479282
+      mermaid_sprite_sheet_2: 7386624281723452298
+      mermaid_sprite_sheet_3: 5477725877173932817
+      mermaid_sprite_sheet_4: 3231238898808557474
+      mermaid_sprite_sheet_5: -6513276737737318109
+      mermaid_sprite_sheet_6: 2716496082664957426
+      mermaid_sprite_sheet_7: 2770113871171566039
+      mermaid_sprite_sheet_8: -379831330712482439
+      mermaid_sprite_sheet_9: -9121437475871568829
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -7,6 +7,7 @@ namespace Level2
     {
         [SerializeField] private int defaultHp;
         [SerializeField] private Slider scrollbar;
+        [SerializeField] private GameObject endCanvas;
         private int _curHp;
         private AudioManager _audioManager;
         
@@ -21,6 +22,11 @@ namespace Level2
         {
             _curHp -= dmg;
             Debug.Log($"current hp: {_curHp}");
+            if (_curHp <= 0)
+            {
+                endCanvas.SetActive(true);
+                Time.timeScale = 0;
+            }
             scrollbar.value = ((float)_curHp) / defaultHp;
             _audioManager.PlayHurt();
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Level2
 {
@@ -16,6 +17,8 @@ namespace Level2
 
         private void Update()
         {
+            if (transform.position.y <= endY)
+                SceneManager.LoadScene("dialogue2");
             var delta = (endY - _startY) * timer.GetCurrentPercentage();
             var transform1 = transform;
             var position = transform1.position;

@@ -234,7 +234,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "\u6C23\u7403 Pixel Art Mermaids_0": -7169969978120168974
+      "\u6C23\u7403 Pixel Art Mermaids_1": -5343919983251876730
+      "\u6C23\u7403 Pixel Art Mermaids_2": 7565903792336262040
+      "\u6C23\u7403 Pixel Art Mermaids_3": 2120510970960791483
+      "\u6C23\u7403 Pixel Art Mermaids_4": -1263180450069787915
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
