@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Bubble : MonoBehaviour
 {
+    public AudioClip popSound;
     private float maxsize = 1.9f;
 
     private float phasex = 0.5f;
@@ -97,6 +98,13 @@ public class Bubble : MonoBehaviour
         {
             if (UnityEngine.Random.value < 0.1)
             {
+                var audioSource = FindFirstObjectByType<AudioSource>();
+                var ctrl = audioSource.gameObject.GetComponent<Controller>();
+                if (ctrl.guy != null && (ctrl.guy.position - transform.position).magnitude < 7)
+                {
+                    audioSource.clip = popSound;
+                    audioSource.Play();
+                }
                 Destroy(gameObject);
             }
         }

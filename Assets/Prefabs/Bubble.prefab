@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a40889c4b893ac4fc8aefadabe8c8d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  popSound: {fileID: 8300000, guid: 5826bc59fb6a603f99f6565487e9cc7e, type: 3}
 --- !u!50 &-9083894198077039801
 Rigidbody2D:
   serializedVersion: 5
