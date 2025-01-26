@@ -18,13 +18,27 @@ public class Bubble3 : MonoBehaviour
         int rint = r.Next(0, 100);
         if (0 <= rint && rint < 5)
         {
-            kind = 0;
-            bubble_0.SetActive(true);
+            if (-1.5f < gameObject.transform.position.x && gameObject.transform.position.x < 1.5f && r.Next(4) == 0)
+            {
+                GetComponent<Animator>().enabled = true;
+            }
+            else
+            {
+                kind = 0;
+                bubble_0.SetActive(true);
+            }
         }
         else if (5 <= rint && rint < 10)
         {
-            kind = 1;
-            bubble_1.SetActive(true);
+            if (-1.5f < gameObject.transform.position.x && gameObject.transform.position.x < 1.5f && r.Next(4) == 0)
+            {
+                GetComponent<Animator>().enabled = true;
+            }
+            else
+            {
+                kind = 1;
+                bubble_1.SetActive(true);
+            }
         }
         else
         {

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameControl3 : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class GameControl3 : MonoBehaviour
     float j = 0;
     void Start()
     {
+        speed = 3f;
+        gameover = false;
+        win = false;
+        score = -8;
         for (int i = -14; i < 15; i++)
         {
             GameObject a = Instantiate(bubble, new Vector3(i, -6, 0), Quaternion.identity);
@@ -43,6 +48,10 @@ public class GameControl3 : MonoBehaviour
                 }
                 j = 0;
             }
+        }
+        if (Input.GetKey(KeyCode.R))
+        {
+            SceneManager.LoadScene("level3");
         }
     }
 }
