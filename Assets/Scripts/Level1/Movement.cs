@@ -48,6 +48,10 @@ public class Movement : MonoBehaviour
         {
             isGrounded = true;
             launching = false;
+            if (c.gameObject.tag == "Win")
+            {
+                Debug.Log("Win!");
+            }
         }
     }
 

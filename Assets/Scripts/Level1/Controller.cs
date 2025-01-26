@@ -4,6 +4,7 @@ public class Controller : MonoBehaviour
 {
     public Transform guy;
     public Transform platform;
+    public float levelLength = 10;
     float cursor = 0;
 
     public GameObject bubblePrefab;
@@ -19,7 +20,7 @@ public class Controller : MonoBehaviour
             Instantiate(bubblePrefab, new Vector3(guy.transform.position.x + rng, -2f - 2 * Random.value, 0), Quaternion.identity);
         }
 
-        platform.position += new Vector3(100, 0, 0);
+        platform.position += new Vector3(levelLength, 0, 0);
     }
 
     // Update is called once per frame

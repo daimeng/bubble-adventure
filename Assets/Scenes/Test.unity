@@ -606,7 +606,7 @@ GameObject:
   - component: {fileID: 920055473}
   m_Layer: 6
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: Win
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1570,6 +1570,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guy: {fileID: 1984535066}
   platform: {fileID: 1014468457}
+  levelLength: 80
   bubblePrefab: {fileID: 7874510415210472936, guid: 3e71b3e5c5ee1a11aad0850c84dabce3, type: 3}
 --- !u!4 &2047977247
 Transform:
