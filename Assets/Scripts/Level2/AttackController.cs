@@ -21,7 +21,8 @@ namespace Level2
                 yield return new WaitForSeconds(1);
             }
         }
-
+        
+        
         private IEnumerator RandomEnable()
         {
             while (true)

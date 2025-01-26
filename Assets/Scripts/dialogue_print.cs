@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class dialogue_print : MonoBehaviour {
 
@@ -63,6 +64,32 @@ public class dialogue_print : MonoBehaviour {
 
         // Wait for the animation to finish (assuming 1 second fade duration)
         yield return new WaitForSeconds(1f);
+        var scene = SceneManager.GetActiveScene().name;
+        Debug.Log($"scene name: {scene}");
+        if (scene == "Ending")
+        {
+            SceneManager.LoadScene("Title");
+            yield break;
+        }
+        else if (scene == "Opening")
+        {
+            SceneManager.LoadScene("Test");
+            yield break;
+        }
+
+        switch (scene[scene.Length - 1])
+        {
+            case '1':
+                SceneManager.LoadScene("Level2");
+                break;
+            case '2':
+                SceneManager.LoadScene("level3");
+                break;
+            default:
+                Debug.LogError("WTF");
+                break;
+        }
+
     }
 }
 

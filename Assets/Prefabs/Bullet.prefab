@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vec: {x: 0, y: 0.05}
-  dmg: 20
+  dmg: 30
   AttackLane: {fileID: 0}
 --- !u!1001 &3310347666626872032
 PrefabInstance:
