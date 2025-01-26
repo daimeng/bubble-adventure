@@ -1,8 +1,5 @@
 using System;
-using Unity.VisualScripting;
-using UnityEditor.PackageManager;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Bubble : MonoBehaviour
 {
@@ -46,7 +43,7 @@ public class Bubble : MonoBehaviour
         c.TryGetComponent(out Movement m);
         if (m != null)
         {
-            if (c.transform.localScale.x + 0.1 > transform.localScale.x)
+            if (c.transform.localScale.x + 0.05 > transform.localScale.x)
             {
                 transform.position = transform.position - (c.transform.position - transform.position) / 4;
                 return;
@@ -69,7 +66,7 @@ public class Bubble : MonoBehaviour
         {
             var rb = c.attachedRigidbody;
             var d = transform.position - rb.transform.position;
-            d.y -= collider.radius / 4;
+            d.y -= collider.radius / 10;
             if (!m.launching)
             {
                 rb.AddForce(d, ForceMode2D.Impulse);

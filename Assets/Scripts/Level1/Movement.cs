@@ -3,9 +3,14 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
 {
+    public Slider hpSlider;
+    static float MAXHP = 3f;
+    private float hp = MAXHP;
+
     private LayerMask defaultLayer;
 
     // Drag and Launch
@@ -37,6 +42,8 @@ public class Movement : MonoBehaviour
         drawline = DrawLine.GetComponent<SpriteRenderer>();
         drawline.enabled = false;
         rb = GetComponent<Rigidbody2D>();
+        hpSlider.maxValue = MAXHP;
+        hpSlider.value = hp;
     }
 
     void OnCollisionEnter2D(Collision2D c)
@@ -63,22 +70,24 @@ public class Movement : MonoBehaviour
             }
         }
 
-        // if (bubble == null) return;
+        if (bubble == null)
+        {
+            hp -= Time.deltaTime;
+        }
+        else
+        {
+            hp += Time.deltaTime;
+        }
 
-        // // If in bubble, suck to center
-        // var d = (bubble.transform.position - transform.position) / 2;
-        // var clamped = Math.Min(d.magnitude, 0.1f);
-        // var nextpos = transform.position + d.normalized * clamped;
-        // if (d.sqrMagnitude < 0.1)
-        // {
-        //     rb.MovePosition(bubble.transform.position);
-        //     bubble = null;
-        //     controlled = true;
-        // }
-        // else
-        // {
-        //     rb.MovePosition(nextpos);
-        // }
+        if (hp < 0)
+        {
+            Destroy(gameObject);
+        }
+        else if (hp > MAXHP)
+        {
+            hp = MAXHP;
+        }
+        hpSlider.value = hp;
     }
 
     void Update()
