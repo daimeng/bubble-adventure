@@ -6,12 +6,19 @@ using UnityEngine.UIElements;
 
 public class Bubble : MonoBehaviour
 {
-    private float maxsize = 2.5f;
+    private float maxsize = 1.9f;
     private CircleCollider2D collider;
 
     private float phasex = 0.5f;
     private float vx = 0.0f;
     private float vy = 0.01f;
+
+    void Awake()
+    {
+        vy += UnityEngine.Random.value / 100;
+        var scale = 0.4f + UnityEngine.Random.value / 3;
+        transform.localScale = new Vector3(scale, scale, transform.localScale.z);
+    }
 
     void OnTriggerEnter2D(Collider2D c)
     {
@@ -36,11 +43,15 @@ public class Bubble : MonoBehaviour
             }
         }
 
-        if (c.transform.localScale.x > transform.localScale.x) return;
-
         c.TryGetComponent(out Movement m);
         if (m != null)
         {
+            if (c.transform.localScale.x + 0.1 > transform.localScale.x)
+            {
+                transform.position = transform.position - (c.transform.position - transform.position) / 4;
+                return;
+            }
+
             m.bubble = this;
             m.launching = false;
             var rb = c.attachedRigidbody;

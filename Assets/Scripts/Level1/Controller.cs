@@ -6,23 +6,23 @@ public class Controller : MonoBehaviour
     float cursor = 0;
 
     public GameObject bubblePrefab;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
+        for (var i = 0; i < 20; i++)
+        {
+            var rng = Random.Range(-5, 20);
+            var b = Instantiate(bubblePrefab, new Vector3(guy.transform.position.x + rng, -1f - 2 * Random.value, 0), Quaternion.identity);
+        }
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (cursor > guy.transform.position.x + 10) return;
-
-        var rng = Random.Range(0, 100);
-        if (rng < 10)
+        var rng = Random.Range(1, 1000);
+        if (rng < 100)
         {
-            var b = Instantiate(bubblePrefab, new Vector3(cursor, rng / 10, 0), Quaternion.identity);
-            cursor += 2;
+            Instantiate(bubblePrefab, new Vector3(guy.transform.position.x + rng, -5f, 0), Quaternion.identity);
         }
-
-        cursor += 0.1f;
     }
 }
