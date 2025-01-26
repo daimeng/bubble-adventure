@@ -117,3 +117,5 @@ About
 # Rider things
 .idea
 .idea/*
+
+.vscode
